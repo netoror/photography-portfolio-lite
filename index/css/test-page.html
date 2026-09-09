@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>版本测试页面 - 摄影作品集</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#home" class="logo">PORTFOLIO</a>
+            <ul class="nav-menu">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#gallery">作品展示</a></li>
+                <li><a href="#about">关于我</a></li>
+                <li><a href="#contact">联系我</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="fade-in">用镜头捕捉瞬间</h1>
+            <p class="fade-in-delay">摄影 | Portrait | Landscape | Street</p>
+            <a href="#gallery" class="btn btn-primary fade-in-latest">查看作品集</a>
+        </div>
+    </header>
+
+    <!-- 画廊 -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">精选作品</h2>
+            
+            <!-- 作品网格 -->
+            <div class="gallery-grid" id="galleryGrid"></div>
+
+            <!-- Lightbox 模态框 -->
+            <div class="lightbox" id="lightbox">
+                <span class="lightbox-close">&times;</span>
+                <img class="lightbox-img" src="" alt="">
+                <div class="lightbox-caption"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">关于摄影师</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>📷 我是一名独立摄影师，专注于捕捉生活中的美好瞬间。</p>
+                    <p>🎨 擅长人像摄影、风光摄影和街头摄影，用镜头讲述故事。</p>
+                    <p>💡 拍摄风格自然、真实、富有情感，致力于记录每一个珍贵时刻。</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">年摄影经验</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">作品拍摄</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">品牌合作</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-content">
+                <div class="contact-card">
+                    <h3>📧 邮箱</h3>
+                    <p>your.email@example.com</p>
+                </div>
+                <div class="contact-card">
+                    <h3>📱 社交媒体</h3>
+                    <div class="social-links">
+                        <a href="#" target="_blank" class="social-icon instagram">Instagram</a>
+                        <a href="#" target="_blank" class="social-icon weibo">微博</a>
+                        <a href="#" target="_blank" class="social-icon wechat">微信</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 摄影作品集 | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

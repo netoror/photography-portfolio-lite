@@ -1,0 +1,100 @@
+/* ==================== About 页面特有样式（仅/about 页面使用） ==================== */
+
+/* 只在 /about 页面显示的内容 */
+body:not([class*="about-page"]) .page-hero,
+body:not([class*="about-page"]) .about-content-section {
+    display: none !important;  /* 主页不显示这些 */
+}
+
+/* ==================== About Cards（仅在/about 页面） ==================== */
+body:not([class*="about-page"]) .about-card,
+body:not([class*="about-page"]) .about-card-primary,
+body:not([class*="about-page"]) .about-card-secondary {
+    display: none !important;
+}
+
+/* ==================== About Cards ==================== */
+.about-card {
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.about-card-primary {
+    background: #0a0a0a;  /* 深黑色 */
+    border: 1px solid rgba(139, 92, 246, 0.3);  /* 紫色边框 */
+}
+
+.about-card-secondary {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);  /* 深黑渐变 */
+    border: 1px solid rgba(139, 92, 246, 0.2);  /* 紫色边框 */
+}
+
+.about-card h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #e9d5ff 0%, #c4b5fd 100%);  /* 紫色渐变文字 */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.about-card p,
+.about-card ul {
+    font-size: 1em;
+    color: #d1d5db;  /* 浅灰文字 */
+    line-height: 1.8;
+}
+
+.about-card ul {
+    list-style: none;
+}
+
+.about-card ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.3);  /* 紫色分隔线 */
+}
+
+.skill-list {
+    list-style: none;
+}
+
+/* ==================== Stat Grid ==================== */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.stat-item-small {
+    text-align: center;
+    padding: 25px;
+    background: rgba(124, 58, 237, 0.1);  /* 紫色半透明 */
+    border: 1px solid rgba(139, 92, 246, 0.3);  /* 紫色边框 */
+    border-radius: 10px;
+    box-shadow: 0 3px 20px rgba(124, 58, 237, 0.2);  /* 紫色光晕 */
+}
+
+.stat-number-small {
+    display: block;
+    font-size: 2.5em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #e9d5ff 0%, #c4b5fd 100%);  /* 浅紫色渐变 */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);  /* 紫色光晕 */
+}
+
+.stat-label-small {
+    display: block;
+    font-size: 0.9em;
+    color: #cbd5e1;  /* 更亮的浅灰文字 */
+    margin-top: 8px;
+}
+
+/* ==================== Contact Methods（主页不显示）==================== */
+body:not([class*="about-page"]) .contact-methods {
+    display: none !important;
+}

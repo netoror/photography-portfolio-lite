@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>点赞功能测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        
+        .gallery-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 90%;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* ✅ 点赞按钮容器 */
+        .like-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+        }
+        
+        /* ✅ 点赞按钮样式 */
+        .like-btn {
+            display: inline-flex;
+            align-items: center;
+            background: white;
+            border-radius: 20px;
+            padding: 6px 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .like-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .like-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* ✅ 点赞动画 */
+        @keyframes like-bounce {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.3); }
+            50% { transform: scale(1.1); }
+            75% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .like-active {
+            animation: like-bounce 0.3s ease;
+        }
+        
+        /* ✅ 点赞计数数字样式 */
+        .like-count {
+            color: #ff4757;
+            font-weight: bold;
+            margin-left: 5px;
+            min-width: 20px;
+        }
+        
+        .photo-info {
+            padding: 12px;
+        }
+        
+        .info-title {
+            color: #333;
+            font-size: 16px;
+            margin: 0 0 5px 0;
+            font-weight: 600;
+        }
+        
+        .info-category {
+            color: #888;
+            font-size: 12px;
+            margin: 0;
+        }
+        
+        .info-description {
+            color: #999;
+            font-size: 11px;
+            margin: 5px 0 0 0;
+            line-height: 1.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <h1>🎨 摄影作品集 - 点赞功能测试</h1>
+        <p class="subtitle">请尝试点击右上角的 ❤️ 按钮并观察计数变化</p>
+        
+        <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+
+    <!-- ✅ Lightbox 模态框 -->
+    <div class="lightbox" id="lightbox" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center;">
+        <span class="lightbox-close" style="color: white; font-size: 40px; cursor: pointer; position: absolute; top: 20px; right: 30px;">&times;</span>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="">
+        <div class="lightbox-caption" id="lightbox-caption" style="color: white; margin-top: 15px; font-size: 18px;"></div>
+    </div>
+
+    <script>
+        // ==================== 作品集数据 ====================
+        const portfolioData = [
+            { id: 1, title: "京都美术馆大厅", category: "城市摄影", image: "./images/gallery.jpg", fullImage: "./images/gallery.jpg", description:"京都美术馆大厅，平整、洁白、对称。。。", likes: 0 },
+            { id: 2, title: "天空之门", category: "城市摄影", image: "./images/sky_door.jpg", fullImage: "./images/sky_door.jpg", description:"京都美术馆门口的巨大鸟居", likes: 0 },
+            { id: 3, title: "前往大阪某大型超市的路上的随手一拍", category: "城市摄影", image: "./images/osaka_road.jpg", fullImage: "./images/osaka_road.jpg", description:"走在路上", likes: 0 },
+            { id: 4, title: "前往大阪某大型超市的路上的随手一拍", category: "城市摄影", image: "./images/osaka_road1.jpg", fullImage: "./images/osaka_road1.jpg", description:"还是在路上。。。", likes: 0 },    
+            { id: 5, title: "利贝尔酒店外的大桥", category: "城市摄影", image: "./images/osaka_hotel.jpg", fullImage: "./images/osaka_hotel.jpg", description:"第二次选择的大版当地酒店，在樱岛区", likes: 0 },   
+            { id: 6, title: "大阪某大型平价超市门口街景", category: "城市摄影", image: "./images/osaka_outside_supermarket.jpg", fullImage: "./images/osaka_outside_supermarket.jpg", description:"终于走到了超市门口，平静的生活", likes: 0 },
+            { id: 7, title: "大阪某大型平价超市门口街景 1", category: "城市摄影", image: "./images/osaka_outside_supermarket1.jpg", fullImage: "./images/osaka_outside_supermarket1.jpg", description:"渴了，喝水", likes: 0 },	
+            { id: 8, title: "9 点来钟在大阪某 jr 站里", category: "城市摄影", image: "./images/a_jr_station_at_osaka_night.jpg", fullImage: "./images/a_jr_station_at_osaka_night.jpg", description:"十点来钟的电车站，几乎没有人", likes: 0 },
+        ];
+
+        // ==================== 点赞功能 ====================
+        function getLikes(photoId) {
+            const stored = localStorage.getItem(`like_${photoId}`);
+            return stored ? parseInt(stored, 10) : 0;
+        }
+
+        function addLike(photoId) {
+            console.log(`[点赞] 获取当前点赞数：${getLikes(photoId)}，即将增加到 ${getLikes(photoId) + 1}`);
+            
+            // 获取当前点赞数并加 1
+            const currentLikes = getLikes(photoId);
+            const newLikes = currentLikes + 1;
+            
+            // 保存到 localStorage（支持跨设备访问）
+            localStorage.setItem(`like_${photoId}`, newLikes.toString());
+            
+            console.log(`[点赞] ${photoId}: ${currentLikes} → ${newLikes}`);
+            console.log(`[点赞] LocalStorage 已更新：${localStorage.getItem(`like_${photoId}`)}`);
+            
+            // 更新数据中的点赞数
+            const photo = portfolioData.find(p => p.id === photoId);
+            if (photo) {
+                photo.likes = newLikes;
+                console.log(`[点赞] 更新了 portfolioData[${photoId}].likes = ${newLikes}`);
+            }
+            
+            // ✅ 更新按钮显示的计数数字
+            const galleryItem = document.querySelector(`.gallery-item[data-id="${photoId}"]`);
+            if (galleryItem) {
+                const likeBtn = galleryItem.querySelector('.like-btn');
+                const likeCountSpan = likeBtn.querySelector('.like-count');
+                if (likeCountSpan) {
+                    likeCountSpan.textContent = newLikes;
+                    console.log(`[点赞] 更新了按钮显示：${likeCountSpan.textContent}`);
+                }
+            }
+            
+            // 显示点赞动画效果
+            showLikeAnimation(photoId);
+        }
+
+        function showLikeAnimation(photoId) {
+            const galleryItem = document.querySelector(`.gallery-item[data-id="${photoId}"]`);
+            if (galleryItem) {
+                const likeBtn = galleryItem.querySelector('.like-btn');
+                if (likeBtn) {
+                    likeBtn.classList.add('like-active');
+                    setTimeout(() => {
+                        likeBtn.classList.remove('like-active');
+                    }, 300);
+                }
+            }
+        }
+
+        // ==================== Lightbox 功能 ====================
+        function openLightbox(photoId) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const caption = document.getElementById('lightbox-caption');
+            
+            const photo = portfolioData.find(p => p.id === photoId);
+            
+            if (photo) {
+                console.log(`[Lightbox] 加载原图：${photo.fullImage}`);
+                img.src = photo.fullImage;
+                caption.textContent = `${photo.title} - ${photo.category}`;
+            } else {
+                console.error(`[错误] 找不到 ID 为 ${photoId} 的图片`);
+                return;
+            }
+            
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            
+            img.src = '';
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        // ==================== 初始化画廊 ====================
+        function initGallery() {
+            const grid = document.getElementById('galleryGrid');
+            console.log('[Gallery] 开始渲染画廊...');
+            
+            portfolioData.forEach((photo, i) => {
+                console.log(`[Gallery] 处理第 ${i+1} 张图片：${photo.title}`);
+                
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                div.style.animationDelay = (i * 0.1) + 's';
+                div.setAttribute('data-id', photo.id);
+                
+                // 生成缩略图 URL - 直接使用本地图片
+                const thumbnailUrl = photo.image;
+                console.log(`[Gallery] 本地图片缩略图：${thumbnailUrl}`);
+                
+                const img = document.createElement('img');
+                img.src = thumbnailUrl;
+                img.alt = photo.title;
+                img.loading = 'lazy';
+                img.onerror = function() {
+                    console.error(`[错误] 图片加载失败：${thumbnailUrl}`);
+                };
+                div.appendChild(img);
+                
+                // ✅ 添加点赞按钮和计数显示
+                const likeContainer = document.createElement('div');
+                likeContainer.className = 'like-container';
+                
+                // ✅ 点赞图标（心形）
+                const likeBtn = document.createElement('span');
+                likeBtn.className = 'like-btn';
+                likeBtn.innerHTML = '❤️ ';
+                likeBtn.title = `喜欢 (${photo.likes})`;
+                
+                // ✅ 绑定点击事件 - 这是关键！
+                likeBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    console.log(`[点击事件触发] photoId: ${photo.id}`);
+                    addLike(photo.id);
+                };
+                
+                // ✅ 点赞计数数字
+                const likeCount = document.createElement('span');
+                likeCount.className = 'like-count';
+                likeCount.textContent = photo.likes;
+                likeBtn.appendChild(likeCount);
+                
+                likeContainer.appendChild(likeBtn);
+                div.appendChild(likeContainer);
+                
+                // ✅ 添加信息面板
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'photo-info';
+                
+                infoDiv.innerHTML = `
+                    <h3 class="info-title">${photo.title}</h3>
+                    <p class="info-category">${photo.category}</p>
+                    <p class="info-description">${photo.description}</p>
+                `;
+                
+                div.appendChild(infoDiv);
+                console.log(`[Gallery] 第 ${i+1} 张图的 HTML 结构创建完成`);
+                
+                // ✅ 点击放大
+                div.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openLightbox(photo.id);
+                });
+                
+                grid.appendChild(div);
+            });
+            
+            console.log('[Gallery] 画廊渲染完成');
+        }
+
+        // ==================== 初始化 ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            initGallery();
+            console.log('[画廊] 所有功能已初始化');
+            
+            console.log('=== LocalStorage 初始状态 ===');
+            for (let i = 1; i <= portfolioData.length; i++) {
+                const stored = localStorage.getItem(`like_${i}`);
+                console.log(`点赞数 ${i}:`, stored || '未存储');
+            }
+        });
+    </script>
+</body>
+</html>

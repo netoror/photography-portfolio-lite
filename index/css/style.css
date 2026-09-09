@@ -1,0 +1,508 @@
+/* ==================== 全局样式 - 统一深黑色背景 ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #d1d5db;
+    background-color: #0a0a0a !important;
+    overflow-x: hidden;
+}
+
+/* ==================== 木星纹理背景装饰 ==================== */
+.hero {
+    position: relative;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        repeating-linear-gradient(180deg, rgba(25, 15, 5, 0) 0px, rgba(160, 100, 40, 0.12) 0px, rgba(160, 100, 40, 0.12) 30px),
+        repeating-linear-gradient(180deg, rgba(25, 15, 5, 0) 0px, rgba(200, 160, 100, 0.08) 0px, rgba(200, 160, 100, 0.08) 35px),
+        repeating-linear-gradient(90deg, rgba(25, 15, 5, 0) 0px, rgba(140, 90, 40, 0.08) 0px, rgba(140, 90, 40, 0.08) 40px),
+        radial-gradient(circle at 75% 50%, rgba(220, 130, 80, 0.15) 0%, rgba(200, 120, 70, 0.10) 30%, rgba(190, 110, 60, 0.06) 50%, transparent 60%),
+        repeating-linear-gradient(45deg, rgba(25, 15, 5, 0) 0px, rgba(170, 130, 80, 0.06) 0px, rgba(170, 130, 80, 0.06) 25px);
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+}
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180vw;
+    height: 100vh;
+    background: radial-gradient(ellipse at center, rgba(255, 240, 200, 0.15) 0%, transparent 75%);
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 0;
+}
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150vw;
+    height: 90vh;
+    background: radial-gradient(ellipse at center, rgba(255, 240, 200, 0.1) 0%, transparent 70%);
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ==================== 导航栏 ==================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(10, 10, 10, 0.95) !important;
+    padding: 15px 0;
+    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 1.5em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 2px;
+    filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.6));
+}
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+.nav-menu a {
+    text-decoration: none;
+    color: #d1d5db;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: relative;
+}
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: #c4b5fd;
+    background: rgba(124, 58, 237, 0.2);
+}
+
+/* ==================== Hero 区域 ==================== */
+.hero {
+    height: 100vh;
+    background-color: #0a0a0a !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 50px;
+}
+.hero h1 {
+    font-size: 3.5em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.hero p {
+    font-size: 1.3em;
+    color: #9ca3af;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ==================== 按钮样式 ==================== */
+.btn {
+    display: inline-block;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    font-size: 1em;
+}
+.btn-primary {
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.5);
+    border-color: rgba(124, 58, 237, 0.4);
+}
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(124, 58, 237, 0.7);
+    background: linear-gradient(135deg, #a855f7 0%, #d946ef 100%);
+}
+
+/* ==================== Section Title ==================== */
+.section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 60px;
+    background: linear-gradient(135deg, #f4f4f5 0%, #e4e4e7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    padding-bottom: 20px;
+    font-weight: 700;
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #7c3aed, #a855f7, transparent);
+    border-radius: 2px;
+}
+
+/* ==================== Gallery Section ==================== */
+.gallery-section {
+    padding: 100px 0;
+    background-color: #0a0a0a !important;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+/* 📐 Gallery Item 容器 */
+.gallery-item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+/* 📐 缩略图尺寸 */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+/* 📝 Photo Info 信息面板 */
+.info-title, .info-category, .info-description {
+    margin: 0;
+}
+.photo-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 15px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 60%, transparent 100%);
+    border-radius: 0 0 12px 12px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+/* 🖱️ 悬停时显示信息面板 */
+.gallery-item:hover .photo-info {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.info-title {
+    font-size: 1.1em;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.info-category {
+    font-size: 0.75em;
+    color: #c4b5fd;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+}
+.info-description {
+    font-size: 0.9em;
+    color: #d1d5db;
+    line-height: 1.4;
+}
+
+/* ✅ Lightbox 模态框样式 */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+.lightbox.show {
+    opacity: 1;
+    visibility: visible;
+}
+.lightbox-img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+.lightbox-caption {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 1.2em;
+    text-align: center;
+    max-width: 80%;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+.lightbox-close:hover {
+    color: #c4b5fd;
+    transform: scale(1.1);
+}
+
+/* ✅ 点赞功能 */
+.like-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+.like-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+.like-btn:hover {
+    transform: scale(1.05);
+}
+.like-count {
+    font-family: 'Montserrat', monospace;
+    font-weight: 700;
+    color: #a855f7;
+}
+
+/* ==================== 其他 Section 添加木星纹理 ==================== */
+/* Gallery Section - 添加木星纹理 */
+.gallery-section {
+    position: relative;
+}
+.gallery-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        repeating-linear-gradient(180deg, rgba(25, 15, 5, 0) 0px, rgba(160, 100, 40, 0.09) 0px, rgba(160, 100, 40, 0.09) 30px),
+        repeating-linear-gradient(180deg, rgba(25, 15, 5, 0) 0px, rgba(200, 160, 100, 0.06) 0px, rgba(200, 160, 100, 0.06) 35px),
+        repeating-linear-gradient(90deg, rgba(25, 15, 5, 0) 0px, rgba(140, 90, 40, 0.07) 0px, rgba(140, 90, 40, 0.07) 40px),
+        radial-gradient(circle at 75% 50%, rgba(220, 130, 80, 0.12) 0%, rgba(200, 120, 70, 0.08) 30%, rgba(190, 110, 60, 0.05) 50%, transparent 60%);
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* About Section - 添加木星纹理 */
+.about-section {
+    padding: 100px 0;
+    background-color: #0a0a0a !important;
+    position: relative;
+}
+.about-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        repeating-linear-gradient(180deg, rgba(25, 15, 5, 0) 0px, rgba(160, 100, 40, 0.09) 0px, rgba(160, 100, 40, 0.09) 30px),
+        repeating-linear-gradient(180deg, rgba(25, 15, 5, 0) 0px, rgba(200, 160, 100, 0.06) 0px, rgba(200, 160, 100, 0.06) 35px),
+        repeating-linear-gradient(90deg, rgba(25, 15, 5, 0) 0px, rgba(140, 90, 40, 0.07) 0px, rgba(140, 90, 40, 0.07) 40px),
+        radial-gradient(circle at 75% 50%, rgba(220, 130, 80, 0.12) 0%, rgba(200, 120, 70, 0.08) 30%, rgba(190, 110, 60, 0.05) 50%, transparent 60%);
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Contact Section - 添加木星纹理 */
+.contact-section {
+    padding: 100px 0;
+    background-color: #0a0a0a !important;
+    position: relative;
+}
+.contact-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        repeating-linear-gradient(180deg, rgba(25, 15, 5, 0) 0px, rgba(160, 100, 40, 0.09) 0px, rgba(160, 100, 40, 0.09) 30px),
+        repeating-linear-gradient(180deg, rgba(25, 15, 5, 0) 0px, rgba(200, 160, 100, 0.06) 0px, rgba(200, 160, 100, 0.06) 35px),
+        repeating-linear-gradient(90deg, rgba(25, 15, 5, 0) 0px, rgba(140, 90, 40, 0.07) 0px, rgba(140, 90, 40, 0.07) 40px),
+        radial-gradient(circle at 75% 50%, rgba(220, 130, 80, 0.12) 0%, rgba(200, 120, 70, 0.08) 30%, rgba(190, 110, 60, 0.05) 50%, transparent 60%);
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ==================== About Section ==================== */
+.about-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+.about-text p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    color: #d1d5db;
+}
+.about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.stat-item {
+    background: rgba(124, 58, 237, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.15);
+}
+.stat-number {
+    display: block;
+    font-size: 3em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.stat-label {
+    color: #9ca3af;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+/* ==================== Contact Section ==================== */
+.contact-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+.contact-card {
+    background: rgba(124, 58, 237, 0.08);
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(124, 58, 237, 0.15);
+}
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+    background: rgba(124, 58, 237, 0.12);
+}
+
+/* ==================== Footer ==================== */
+.footer {
+    background-color: #050505 !important;
+    color: #9ca3af;
+    text-align: center;
+    padding: 30px;
+}
+
+/* ==================== 点赞动画效果 ==================== */
+.like-btn.like-active {
+    transform: scale(1.2);
+}
+
+/* ==================== 重置按钮（调试用） ==================== */
+#reset-likes-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    z-index: 1000;
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5em;
+    }
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+    .lightbox-img {
+        max-width: 95%;
+        max-height: 85%;
+    }
+}

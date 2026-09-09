@@ -1,0 +1,129 @@
+========================================
+   HEIC 文件批量转换为 JPG - 操作指南
+========================================
+
+📁 你的 HEIC 文件位置：
+   D:/Users/18268/.lmstudio/apps/bionic/projects/d49037d8-47f4-5808-9028-c707de117f8f/workspace/摄影网站/index/images/
+
+📦 需要转换的文件（共 8 个）：
+   IMG_1273.HEIC
+   IMG_1274.HEIC
+   IMG_1275.HEIC
+   IMG_1276.HEIC
+   IMG_1277.HEIC
+   IMG_1278.HEIC
+   IMG_1279.HEIC
+   IMG_1280.HEIC
+
+========================================
+  方法一：使用 PowerShell（推荐）
+========================================
+
+在 Windows PowerShell 中运行以下命令：
+
+# 切换到文件夹
+cd "D:\Users\18268\.lmstudio\apps\bionic\projects\d49037d8-47f4-5808-9028-c707de117f8f\workspace\摄影网站\index\images"
+
+# 方法 1.1：使用 Windows 自带功能
+foreach ($file in Get-ChildItem *.HEIC) {
+    $name = $file.Name.Replace('.HEIC', '')
+    # 复制文件并打开（手动另存为）
+    Copy-Item $file.FullName "$($name).jpg" -Force
+    Start-Process "explorer.exe" -ArgumentList '""" + $file.FullName + """', 'open'
+}
+
+# 方法 1.2：如果已安装 ImageMagick（需要先下载安装）
+foreach ($file in Get-ChildItem *.HEIC) {
+    $name = $file.Name.Replace('.HEIC', '')
+    magick "$($file.FullName)" "$($name).jpg" -quality 90
+}
+
+========================================
+  方法二：使用在线转换工具
+========================================
+
+推荐网站（免费）：
+1. cloudconvert.com/heic-to-jpg
+2. heictojpg.com
+3. convertio.co/heic-to-jpg
+
+步骤：
+   1. 打开上述任一网站
+   2. 上传所有 HEIC 文件
+   3. 等待转换完成
+   4. 下载转换后的 JPG 文件
+   5. 覆盖到原文件夹位置
+
+========================================
+  方法三：使用第三方软件
+========================================
+
+推荐软件（Windows）：
+1. XnView MP（免费）
+2. PhotoConvert HEIC（付费，但功能强大）
+3. IrfanView + HEIF 插件
+
+步骤（以 XnView MP 为例）：
+   1. 打开 XnView MP
+   2. 导入所有 HEIC 文件
+   3. 选择「批量转换」→ 格式选择「JPEG」
+   4. 点击执行转换
+
+========================================
+  方法四：使用 Python 脚本（需安装依赖）
+========================================
+
+在系统终端（不是沙盒环境）中：
+
+# 安装必要的库（如果还没有）
+pip install libheif-cxx pillow opencv-python-headless
+
+# 运行转换脚本
+python convert_heic.py
+
+注意：由于当前是沙盒环境，Python 无法直接访问本地文件系统。
+你需要将脚本复制到本地环境后运行。
+
+========================================
+  转换完成后的操作
+========================================
+
+1. ✅ 检查所有 JPG 文件是否生成成功
+2. 📝 编辑 js/main.js 文件，更新作品数据配置：
+   
+   将第 3-4 行的在线占位符改为你的 HEIC 转换后的 JPG：
+   
+   // 修改前：
+   image: "https://picsum.photos/seed/city-morning/800/600",
+   
+   // 修改后（假设已转换为 city_morning.jpg）：
+   image: "./images/city_morning.jpg",
+
+3. 🚀 刷新网页查看效果
+
+========================================
+  Python 版本兼容性说明
+========================================
+
+当前系统安装的 Python 版本：Python 3.14.2
+✅ Pillow 12.2.0 - 已安装，可用于处理 JPG 图片
+❌ libheif-cxx - 未安装（需要用于读取 HEIC）
+❌ OpenCV - 未安装（无法读取 HEIC）
+
+如果你想在本地运行 Python 脚本转换，建议：
+   1. 使用 Python 3.10 或 3.11（最稳定）
+   2. 安装 libheif-cxx 和 opencv-python-headless
+   3. 或直接使用系统命令转换
+
+========================================
+  快速测试方案
+========================================
+
+如果不想花时间转换 HEIC，可以先使用在线占位图片：
+- 打开浏览器访问 http://localhost:8080
+- 查看网页效果
+- 确认布局和功能正常后，再替换为真实图片
+
+如需替换，将 online 占位符路径改为本地 JPG 路径即可！
+
+========================================

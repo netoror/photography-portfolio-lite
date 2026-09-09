@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>悬停测试 | 缩略图信息</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#home" class="logo">PORTFOLIO</a>
+            <ul class="nav-menu">
+                <li><a href="#gallery">作品展示</a></li>
+                <li><a href="#test">测试区域</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>缩略图悬停测试</h1>
+            <p>Hover Test - Photo Info Display</p>
+        </div>
+    </header>
+
+    <!-- 测试画廊 -->
+    <section id="test" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">📐 悬停信息显示测试</h2>
+            
+            <div class="gallery-grid" id="galleryGrid"></div>
+            
+            <div class="lightbox" id="lightbox">
+                <span class="lightbox-close">&times;</span>
+                <img class="lightbox-img" src="" alt="">
+                <div class="lightbox-caption"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 测试数据 -->
+    <script>
+        const testPhotos = [
+            { id: 1, title: "京都美术馆大厅", category: "城市摄影", description: "洁白且工整的大厅" },
+            { id: 2, title: "天空之门", category: "城市摄影", description: "京都美术馆前的鸟居" },
+            { id: 3, title: "前往大阪某大型超市的路上的随手一拍", category: "城市摄影", description: "大阪普通街景 1" },
+            { id: 4, title: "前往大阪某大型超市的路上的随手一拍", category: "城市摄影", description: "大阪普通街景 2" }
+        ];
+
+        // 悬停信息显示测试脚本
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('[悬停测试] 页面加载完成');
+            
+            const grid = document.getElementById('galleryGrid');
+            
+            testPhotos.forEach((photo, i) => {
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                
+                // 创建图片
+                const img = document.createElement('img');
+                img.src = photo.image || `https://picsum.photos/seed/test${i}/400/300`;
+                img.alt = photo.title;
+                img.loading = 'lazy';
+                div.appendChild(img);
+                
+                // 创建信息面板
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'photo-info';
+                infoDiv.innerHTML = `
+                    <h3 class="info-title">${photo.title}</h3>
+                    <p class="info-category">${photo.category}</p>
+                    <p class="info-description">${photo.description}</p>
+                `;
+                div.appendChild(infoDiv);
+                
+                // 点击放大
+                div.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openLightbox(photo.image || photo.title);
+                });
+                
+                grid.appendChild(div);
+            });
+
+            function openLightbox(imageUrl) {
+                const lightbox = document.getElementById('lightbox');
+                const img = lightbox.querySelector('.lightbox-img');
+                const caption = lightbox.querySelector('.lightbox-caption');
+                
+                let fullPath = imageUrl;
+                if (!fullPath || !fullPath.startsWith('http')) {
+                    fullPath = `https://picsum.photos/seed/test-lightbox/${Math.floor(Math.random()*1000)}/1200/800`;
+                }
+                
+                img.src = fullPath;
+                caption.textContent = imageUrl;
+                lightbox.classList.add('show');
+            }
+
+            console.log('[悬停测试] 画廊已初始化');
+        });
+    </script>
+</body>
+</html>

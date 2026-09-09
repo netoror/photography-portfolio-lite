@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEIC 转 JPG 转换工具</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 { color: #2d3748; margin-bottom: 20px; text-align: center; }
+        .info { 
+            background: #f5f7fa; 
+            padding: 20px; 
+            border-radius: 12px;
+            margin-bottom: 20px;
+            color: #4a5568;
+        }
+        .file-list { list-style: none; max-height: 300px; overflow-y: auto; }
+        .file-item {
+            padding: 10px 15px;
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .file-name { font-weight: 500; color: #2d3748; }
+        .file-size { color: #718096; font-size: 0.9em; }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        .tips {
+            background: #edf2ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            color: #4a5568;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 HEIC → JPG 转换工具</h1>
+        
+        <div class="info">
+            <strong>📋 当前 images/ 文件夹中的 HEIC 文件：</strong>
+        </div>
+        
+        <div id="fileList"></div>
+        
+        <div class="tips">
+            <strong>💡 转换方法（推荐）：</strong>
+            <ul style="margin-top:10px; padding-left:20px;">
+                <li><strong>方法一：在线转换</strong><br/>访问：<a href="https://cloudconvert.com/heic-to-jpg" target="_blank">cloudconvert.com</a> 上传 HEIC 文件下载 JPG</li>
+                <li><strong>方法二：PowerShell 批量转换</strong><br/>复制以下代码到 PowerShell 运行：</li>
+            </ul>
+        </div>
+
+        <pre style="background:#f5f7fa;padding:20px;border-radius:8px;margin-top:15px;overflow-x:auto;font-size:0.9em;">
+# PowerShell 脚本（批量转换 HEIC→JPG）
+$dir = "C:\Users\18268\.lmstudio\apps\bionic\projects\d49037d8-47f4-5808-9028-c707de117f8f\workspace\摄影网站\index\images"
+Get-ChildItem $dir -Filter "*.HEIC" | ForEach-Object {
+    $name = $_.Name -replace '\.HEIC$',''
+    ConvertFrom-Hepic $_.FullName | Add-Type -MemberDefinition 'public static byte[] ToBytes(string path){var mem=new System.IO.MemoryStream();System.Drawing.Image img=System.Drawing.Imaging.Image.FromFile(path);img.Save(mem,new System.Drawing.Imaging.ImageFormat.Jpeg);return mem.ToArray();}' | Out-Null
+    # 或使用 ImageMagick: convert $_.FullName $name.jpg
+}</pre>
+
+        <div style="text-align:center;margin-top:20px;">
+            <a href="./images/" class="btn btn-primary" target="_blank">📁 打开 images/文件夹</a>
+        </div>
+    </div>
+</body>
+</html>
