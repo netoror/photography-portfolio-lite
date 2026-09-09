@@ -1,12 +1,12 @@
 // ==================== 作品集数据（全部使用本地图片） ====================
 const portfolioData = [
-    { id: 1, title: "京都美术馆大厅", category: "城市摄影", image: "./index-lite/images/gallery.jpg", fullImage: "./index-lite/images/gallery.jpg", description:"京都美术馆大厅，平整、洁白、对称。。。", likes: 0 },
-    { id: 2, title: "天空之门", category: "城市摄影", image: "./index-lite/images/sky_door.jpg", fullImage: "./index-lite/images/sky_door.jpg", description:"京都美术馆门口的巨大鸟居", likes: 0 },
-    { id: 3, title: "前往大阪某大型超市的路上的随手一拍", category: "城市摄影", image: "./index-lite/images/osaka_road.jpg", fullImage: "./index-lite/images/osaka_road.jpg", description:"莫名其妙地决定前往当地一家大型超市。走在路上", likes: 0 },
-    { id: 4, title: "前往大阪某大型超市的路上的随手一拍", category: "城市摄影", image: "./index-lite/images/osaka_road1.jpg", fullImage: "./index-lite/images/osaka_road1.jpg", description:"还是在路上。。。", likes: 0 },    
-    { id: 5, title: "利贝尔酒店外的大桥", category: "城市摄影", image: "./index-lite/images/osaka_hotel.jpg", fullImage: "./index-lite/images/osaka_hotel.jpg", description:"第二次选择的大版当地酒店，在樱岛区", likes: 0 },   
-    { id: 6, title: "大阪某大型平价超市门口街景", category: "城市摄影", image: "./index-lite/images/osaka_outside_supermarket.jpg", fullImage: "./index-lite/images/osaka_outside_supermarket.jpg", description:"终于走到了超市门口，平静的生活", likes: 0 },
-    { id: 7, title: "9 点来钟在大阪某 jr 站里", category: "城市摄影", image: "./index-lite/images/a_jr_station_at_osaka_night.jpg", fullImage: "./index-lite/images/a_jr_station_at_osaka_night.jpg", description:"十点来钟的电车站，几乎没有人，心里毛毛地。。。", likes: 0 },
+    { id: 1, title: "京都美术馆大厅", category: "城市摄影", image: "images/gallery.jpg", fullImage: "images/gallery.jpg", description:"京都美术馆大厅，平整、洁白、对称。。。", likes: 0 },
+    { id: 2, title: "天空之门", category: "城市摄影", image: "images/sky_door.jpg", fullImage: "images/sky_door.jpg", description:"京都美术馆门口的巨大鸟居", likes: 0 },
+    { id: 3, title: "前往大阪某大型超市的路上的随手一拍", category: "城市摄影", image: "images/osaka_road.jpg", fullImage: "images/osaka_road.jpg", description:"莫名其妙地决定前往当地一家大型超市。走在路上", likes: 0 },
+    { id: 4, title: "前往大阪某大型超市的路上的随手一拍", category: "城市摄影", image: "images/osaka_road1.jpg", fullImage: "images/osaka_road1.jpg", description:"还是在路上。。。", likes: 0 },    
+    { id: 5, title: "利贝尔酒店外的大桥", category: "城市摄影", image: "images/osaka_hotel.jpg", fullImage: "images/osaka_hotel.jpg", description:"第二次选择的大版当地酒店，在樱岛区", likes: 0 },   
+    { id: 6, title: "大阪某大型平价超市门口街景", category: "城市摄影", image: "images/osaka_outside_supermarket.jpg", fullImage: "images/osaka_outside_supermarket.jpg", description:"终于走到了超市门口，平静的生活", likes: 0 },
+    { id: 7, title: "9 点来钟在大阪某 jr 站里", category: "城市摄影", image: "images/a_jr_station_at_osaka_night.jpg", fullImage: "images/a_jr_station_at_osaka_night.jpg", description:"十点来钟的电车站，几乎没有人，心里毛毛地。。。", likes: 0 },
 ];
 
 let currentIndex = 0;
