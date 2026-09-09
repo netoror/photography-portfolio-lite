@@ -6,8 +6,8 @@ const portfolioData = [
     { id: 4, title: "前往大阪某大型超市的路上的随手一拍", category: "城市摄影", image: "../versions/a-version/images/osaka_road1.jpg", fullImage: "../versions/a-version/images/osaka_road1.jpg", description:"还是在路上。。。", likes: 0 },    
     { id: 5, title: "利贝尔酒店外的大桥", category: "城市摄影", image: "../versions/a-version/images/osaka_hotel.jpg", fullImage: "../versions/a-version/images/osaka_hotel.jpg", description:"第二次选择的大版当地酒店，在樱岛区", likes: 0 },   
     { id: 6, title: "大阪某大型平价超市门口街景", category: "城市摄影", image: "../versions/a-version/images/osaka_outside_supermarket.jpg", fullImage: "../versions/a-version/images/osaka_outside_supermarket.jpg", description:"终于走到了超市门口，平静的生活", likes: 0 },
-    { id: 7, title: "大阪某大型平价超市门口街景 1", category: "城市摄影", image: "../versions/a-version/images/osaka_outside_supermarket1.jpg", fullImage: "../versions/a-version/images/osaka_outside_supermarket1.jpg", description:"渴了，喝水", likes: 0 },	
-    { id: 8, title: "9 点来钟在大阪某 jr 站里，准备前往难波区的 bic camera 买 kindle", category: "城市摄影", image: "../versions/a-version/images/a_jr_station_at_osaka_night.jpg", fullImage: "../versions/a-version/images/a_jr_station_at_osaka_night.jpg", description:"十点来钟的电车站，几乎没有人，心里毛毛地。。。", likes: 0 },
+    //{ id: 7, title: "大阪某大型平价超市门口街景 1", category: "城市摄影", image: "../versions/a-version/images/osaka_outside_supermarket1.jpg", fullImage: "../versions/a-version/images/osaka_outside_supermarket1.jpg", description:"渴了，喝水", likes: 0 },	
+    { id: 7, title: "9 点来钟在大阪某 jr 站里", category: "城市摄影", image: "../versions/a-version/images/a_jr_station_at_osaka_night.jpg", fullImage: "../versions/a-version/images/a_jr_station_at_osaka_night.jpg", description:"十点来钟的电车站，几乎没有人，心里毛毛地。。。", likes: 0 },
 ];
 
 let currentIndex = 0;
