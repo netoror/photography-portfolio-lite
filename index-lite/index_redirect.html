@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>摄影作品集 - Lite 版</title>
+    <link rel="stylesheet" href="css/style_lite.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#gallery" class="logo">BIG MOUTH</a>
+            <ul class="nav-menu">
+                <li><a href="#gallery">Photos</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 画廊 -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">PHOTOS</h2>
+            <div class="gallery-grid" id="galleryGrid"></div>
+
+            <!-- Lightbox 模态框 -->
+            <div class="lightbox" id="lightbox">
+                <span class="lightbox-close">&times;</span>
+                <img class="lightbox-img" src="" alt="">
+                <div class="lightbox-caption"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>📷 没什么好说的。</p>
+                    <p>🎨 拍照为了什么？。</p>
+                    <p>💡 验证自己对世界的理解。</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number"></span>
+                        <span class="stat-label"></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number"></span>
+                        <span class="stat-label"></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number"></span>
+                        <span class="stat-label"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-content">
+                <div class="contact-card">
+                    <h3>📧 Email:</h3>
+                    <a href="mailto:your.email@example.com">your.email@example.com</a>
+                </div>
+                <div class="contact-card">
+                    <h3>💬 Social:</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-icon instagram">Instagram</a>
+                        <a href="#" class="social-icon weibo">微博</a>
+                        <a href="#" class="social-icon wechat">微信</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>&copy; 2026 Photography Portfolio Lite. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript 引用 -->
+    <script src="js/main_lite.js"></script>
+</body>
+</html>
